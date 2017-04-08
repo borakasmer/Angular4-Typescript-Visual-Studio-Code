@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="jumbotron">
+    <h1>
+      {{title}}
+    </h1>
+  </div>
+  <div>
+    {{UserName}}<br>
+    <b>Kullanıcı Adı:</b><input type="text" [(ngModel)]="UserName">
+    <input type="button" [disabled]="UserName==''" value="Gönder" (click)="GetUserDetail()">
+  </div>
+  <div *ngIf="User!=null; then content else othercontent"></div>
+  <ng-template #content>
+    <font color="red"><b><h3>{{User.bio}}</h3></b></font>
+    <table class="table">
+      <tr>
+        <td><img [src]="User.avatar_url" width="200" alt="User.name"></td>
+        <td><textarea cols="100" rows="20">{{User | json}}</textarea></td>
+      </tr>
+    </table>
+    <div *ngIf="Repos!=null; then reposcontent else otherreposcontent"></div>
+    <ng-template #reposcontent>
+      <repos [RepoList]=Repos (sayMayName)="alertMessage($event)"></repos>
+    </ng-template>
+    <ng-template #otherreposcontent>
+      Litfen Sabırlı Olunuz... :)
+    </ng-template>
+  </ng-template>
+  <ng-template #othercontent>
+    Kullanıcı Adını Giriniz..
+  </ng-template>
+</div>

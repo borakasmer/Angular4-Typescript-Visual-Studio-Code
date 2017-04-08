@@ -1,0 +1,16 @@
+<table class="table">
+    <thead>
+        <tr>
+            <th>Proje Adı</th>
+            <th>Programlama Dili</th>
+            <th>Rating</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let repo of RepoList" class="success">
+            <td (click)="triggerEvent(repo.name)">{{repo.name}}</td>
+            <td>{{repo.language}}</td>
+            <td>{{repo.stargazers_count}}</td>
+        </tr>
+    </tbody>
+</table>
